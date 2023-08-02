@@ -6,7 +6,8 @@ const game = {
   board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
-  winner: ""
+  winner: "",
+  turn: 1 
 }
 
 // players
@@ -20,7 +21,16 @@ function createPlayer(name, marker) {
 const playerOne = createPlayer("billy", "X");
 const playerTwo = createPlayer("sally", "O");
 
-function displayBoard(position, player) {
+function displayBoard(position) {
+  let player = {};
+
+  // determine whos turn it is 
+  if (game.turn % 2 === 0) {
+    player = playerOne;
+  } else {
+    player = playerTwo;
+  }
+
   let status = "";
 
   // prime factorization for identification
@@ -45,12 +55,13 @@ function displayBoard(position, player) {
         if (theId === win) {
           console.log("X wins");
           game.winner = "X";
+          game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
         }
       });
 
     } else if (player.marker === "O") {
       game.oChecker[position] = "O";
-      let idNum = game.xChecker.filter(prime => prime !== "O");
+      let idNum = game.oChecker.filter(prime => prime !== "O");
       console.log(idNum);
       let theId = idNum.reduce(function(product, value) { return product * value; });
       console.log(theId);
@@ -58,14 +69,16 @@ function displayBoard(position, player) {
         if (theId === win) {
           console.log("0 wins");
           game.winner = "O";
+          game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
         }
       });
 
     } else {
       game.winner = false;
     }
-
     
+    // swithc turns
+    game.turn++;
 
   } else {
     console.log(game.board[position]);
@@ -75,7 +88,7 @@ function displayBoard(position, player) {
   // check
   let winner = game.winner;
   console.log(game.winner);
+  console.table(game.board);
   return {winner}
 }
-
 
