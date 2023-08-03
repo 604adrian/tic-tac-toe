@@ -19,10 +19,11 @@ const game = {
 }
 
 // players
-function createPlayer(name, marker) {
+function createPlayer(name, marker, counter) {
   return {
     name: name,
     marker: marker,
+    counter: 0,
   };
 }
 
@@ -81,6 +82,17 @@ function winningAnimation(theId, winner) {
   
 }
 
+function checkForChecker(marker) {
+  if (marker === "X") {
+    playerOne.counter++;
+    let checker = game.xChecker;
+    return checker;
+  } 
+  playerTwo.counter++;
+  let checker = game.oChecker;
+  return checker;
+}
+
 // logic for game
 function displayBoard(position) {
   let player = {};
@@ -101,45 +113,29 @@ function displayBoard(position) {
   let testType = typeof game.board[position];
   if (testType === "number") {
 
+    let marker = player.marker;
+    let checker = checkForChecker(marker);
+
     // update the game board
     game.board[position] = player.marker;
-    
-    // update x player's trackers
-    if (player.marker === "X") {
-      game.xChecker[position] = "X";
-      let idNum = game.xChecker.filter(prime => prime !== "X");
-      console.log(idNum);
-      let theId = idNum.reduce(function(product, value) { return product * value; });
-      console.log(theId);
-      winningValues.forEach((win) => {
-        if (theId === win) {
-          winningAnimation(theId, "X");
-          console.log("X wins");
-          status = "X wins"
-          game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-        } 
-      });
+      
+      // update x player's trackers
+    checker[position] = player.marker;
+    playerOne.counter++;
+    let idNum = checker.filter(prime => prime !== player.marker);
+    let theId = idNum.reduce(function(product, value) { return product * value; });
 
-    // update o player's trackers
-    } else if (player.marker === "O") {
-      game.oChecker[position] = "O";
-      let idNum = game.oChecker.filter(prime => prime !== "O");
-      console.log(idNum);
-      let theId = idNum.reduce(function(product, value) { return product * value; });
-      console.log(theId);
-      winningValues.forEach((win) => {
-        if (theId === win) {
-          winningAnimation(theId, "O");
-          console.log("0 wins");
-          status = "O wins"
-          game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-        } 
-      });
+    winningValues.forEach((win) => {
+      if (theId === win) {
+        winningAnimation(theId, `${player.marker}`);
+        console.log(`${player.marker} wins`);
+        status = `${player.marker} wins`  
+        game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+      } 
+    });
 
-    }
-
-  // swithc turns
-  game.turn++;
+    // switch turns
+    game.turn++;
 
   } else {
     console.log(game.board[position]);
