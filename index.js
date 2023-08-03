@@ -1,23 +1,3 @@
-const game = {
-  board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
-  xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
-  oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
-  winner: "",
-  turn: 2 
-}
-
-// players
-function createPlayer(name, marker) {
-  return {
-    name: name,
-    marker: marker,
-  };
-}
-
-// players
-const playerOne = createPlayer("billy", "X");
-const playerTwo = createPlayer("sally", "O");
-
 // DOM elements
 const aOne = document.querySelector("#zero");
 const aTwo = document.querySelector("#one");
@@ -29,6 +9,78 @@ const cOne = document.querySelector("#six");
 const cTwo = document.querySelector("#seven");
 const cThree = document.querySelector("#eight");
 
+const game = {
+  board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
+  xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
+  oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
+  winnState: 0,  // stores id for animations
+  turn: 2,
+  squares: [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree],
+}
+
+// players
+function createPlayer(name, marker) {
+  return {
+    name: name,
+    marker: marker,
+  };
+}
+
+
+// players
+const playerOne = createPlayer("billy", "X");
+const playerTwo = createPlayer("sally", "O");
+
+// winning animations
+function winningAnimation(theId, winner) {
+  console.log("I'm in")
+  const body = document.querySelector("body");
+  body.classList.add("background-pulse")
+  switch (theId) {
+    case 7436429:
+      aOne.classList.add("plusating-animation");
+      aTwo.classList.add("plusating-animation");
+      aThree.classList.add("plusating-animation");
+      break;
+    case 222870:
+      bOne.classList.add("plusating-animation");
+      bTwo.classList.add("plusating-animation");
+      bThree.classList.add("plusating-animation");
+      break;
+    case 30030:
+      cOne.classList.add("plusating-animation");
+      cTwo.classList.add("plusating-animation");
+      cThree.classList.add("plusating-animation");
+      break;
+    case 440895:
+      aOne.classList.add("plusating-animation");
+      bTwo.classList.add("plusating-animation");
+      cThree.classList.add("plusating-animation");
+      break;
+    case 238602:
+      aThree.classList.add("plusating-animation");
+      bTwo.classList.add("plusating-animation");
+      cOne.classList.add("plusating-animation");
+      break;
+    case 937365:
+      aOne.classList.add("plusating-animation");
+      bOne.classList.add("plusating-animation");
+      cOne.classList.add("plusating-animation");
+      break;
+    case 355810:
+      aTwo.classList.add("plusating-animation");
+      bTwo.classList.add("plusating-animation");
+      cTwo.classList.add("plusating-animation");
+      break;
+    case 149226:
+      aThree.classList.add("plusating-animation");
+      bThree.classList.add("plusating-animation");
+      cThree.classList.add("plusating-animation");
+      break;
+  }
+  
+}
+
 // logic for game
 function displayBoard(position) {
   let player = {};
@@ -39,8 +91,8 @@ function displayBoard(position) {
   } else {
     player = playerTwo;
   }
-
-  let status = "";
+  
+  let status = false;
 
   // prime factorization for identification
   const winningValues = [7436429, 222870, 30030, 440895, 238602, 937365, 355810, 149226]
@@ -51,9 +103,8 @@ function displayBoard(position) {
 
     // update the game board
     game.board[position] = player.marker;
-    status = "success"
     
-    // update player's trackers
+    // update x player's trackers
     if (player.marker === "X") {
       game.xChecker[position] = "X";
       let idNum = game.xChecker.filter(prime => prime !== "X");
@@ -62,14 +113,14 @@ function displayBoard(position) {
       console.log(theId);
       winningValues.forEach((win) => {
         if (theId === win) {
+          winningAnimation(theId, "X");
           console.log("X wins");
-          game.winner = "X";
+          status = "X wins"
           game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-        } else {
-          game.winner = false;
-        }
+        } 
       });
 
+    // update o player's trackers
     } else if (player.marker === "O") {
       game.oChecker[position] = "O";
       let idNum = game.oChecker.filter(prime => prime !== "O");
@@ -78,16 +129,13 @@ function displayBoard(position) {
       console.log(theId);
       winningValues.forEach((win) => {
         if (theId === win) {
+          winningAnimation(theId, "O");
           console.log("0 wins");
-          game.winner = "O";
+          status = "O wins"
           game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-        } else {
-          game.winner = false;
-        }
+        } 
       });
 
-    } else {
-      game.winner = false;
     }
 
   // swithc turns
@@ -95,85 +143,98 @@ function displayBoard(position) {
 
   } else {
     console.log(game.board[position]);
-    status = "taken!"
     console.log("ERROR: position already taken, try again!")
   }
   
   // check
-  let winner = game.winner;
-  console.log(game.winner);
-
-  // check if game board is full
-  let openSpots = game.board.filter(item => typeof item === "number");
-  console.log("open spots: ", openSpots);
-  if (openSpots.join('') === '' && winner === false) {
-    console.log("It's a draw!")
-    game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-    let squares = [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree];
-    squares.forEach((square) => {
-      square.textContent = "";
-    })
-
-  }
-
-  return {winner}
+  console.log(status);
+  console.log(game.board);
+  
+  return {status}
 }
 
+// mark-up the gameboard
 function markUpBoard(square) {
+
+  // remove shaker animation
+  game.squares.forEach((sqr) => {
+    sqr.classList.remove("shaker");
+    sqr.style.color = "white";
+  });
+
+  // mark spot
   let text = square.textContent;
   if (text === "") {
     if (game.turn % 2 === 0) {
-        square.textContent = "O";
-      } else {
-        square.textContent = "X";
-      }
+      square.textContent = "X";
+    } else {
+      square.textContent = "O";
+    }
+  } else {
+    square.classList.add("shaker");
+    square.style.color = "red";
+    square.style.fontSize = "80px";
+    square.style.textAlign = "center";
   }
+
+  // check for draw
+  if (status === false && openSpots.join('') === '') {
+    let openSpots = game.board.filter(item => typeof item === "number");
+    console.log("open spots: ", openSpots);
+    console.log("It's a draw!")
+    game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+    game.squares.forEach((square) => {
+      square.textContent = "";
+    });
+  }
+
+  return
 }
 
 // event listeners
 aOne.addEventListener("click", () => {
-  displayBoard(0);
   markUpBoard(aOne);
+  displayBoard(0);
 });
 
 aTwo.addEventListener("click", () => {
-  displayBoard(1);
   markUpBoard(aTwo);
+  displayBoard(1);
 });
 
 aThree.addEventListener("click", () => {
-  displayBoard(2);
   markUpBoard(aThree);
+  displayBoard(2);
 });
 
 bOne.addEventListener("click", () => {
-  displayBoard(3);
   markUpBoard(bOne);
+  displayBoard(3);
 });
 
 bTwo.addEventListener("click", () => {
-  displayBoard(4);
   markUpBoard(bTwo);
+  displayBoard(4);
 });
 
 bThree.addEventListener("click", () => {
-  displayBoard(5);
   markUpBoard(bThree);
+  displayBoard(5);
 });
 
 cOne.addEventListener("click", () => {
-  displayBoard(6);
   markUpBoard(cOne);
+  displayBoard(6);
 });
 
 cTwo.addEventListener("click", () => {
-  displayBoard(7);
   markUpBoard(cTwo);
+  displayBoard(7);
 });
 
 cThree.addEventListener("click", () => {
-  displayBoard(8);
   markUpBoard(cThree);
+  displayBoard(8);
 });
 
 
