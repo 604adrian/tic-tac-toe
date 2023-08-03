@@ -1,0 +1,46 @@
+h1 {
+  margin: auto;
+  color: white;
+}
+
+body {
+  background-color: #222222;
+}
+
+#ticTacToeBoard {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  margin: 100px;
+  border-left-style: none;
+}
+
+.row{
+  width: 100px;
+  height: 100px;
+  border-color: white;
+  border-style: solid;
+}
+
+.right {
+  border-right-style: none;
+}
+
+.left {
+  border-left-style: none;
+}
+
+.top {
+  border-top-style: none;
+}
+
+.bottom {
+  border-bottom-style: none; 
+}
+
+.row {
+  color: white;
+  font-size: 5em;
+  text-align: center;
+}

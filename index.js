@@ -1,13 +1,9 @@
-// game logic
-// 0 1 2   H A L
-// 3 4 5   H A L
-// 6 7 8   H A L
 const game = {
   board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   winner: "",
-  turn: 1 
+  turn: 2 
 }
 
 // players
@@ -18,9 +14,22 @@ function createPlayer(name, marker) {
   };
 }
 
+// players
 const playerOne = createPlayer("billy", "X");
 const playerTwo = createPlayer("sally", "O");
 
+// DOM elements
+const aOne = document.querySelector("#zero");
+const aTwo = document.querySelector("#one");
+const aThree = document.querySelector("#two");
+const bOne = document.querySelector("#three");
+const bTwo = document.querySelector("#four");
+const bThree = document.querySelector("#five");
+const cOne = document.querySelector("#six");
+const cTwo = document.querySelector("#seven");
+const cThree = document.querySelector("#eight");
+
+// logic for game
 function displayBoard(position) {
   let player = {};
 
@@ -56,6 +65,8 @@ function displayBoard(position) {
           console.log("X wins");
           game.winner = "X";
           game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+        } else {
+          game.winner = false;
         }
       });
 
@@ -70,25 +81,99 @@ function displayBoard(position) {
           console.log("0 wins");
           game.winner = "O";
           game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+        } else {
+          game.winner = false;
         }
       });
 
     } else {
       game.winner = false;
     }
-    
-    // swithc turns
-    game.turn++;
+
+  // swithc turns
+  game.turn++;
 
   } else {
     console.log(game.board[position]);
     status = "taken!"
     console.log("ERROR: position already taken, try again!")
   }
+  
   // check
   let winner = game.winner;
   console.log(game.winner);
-  console.table(game.board);
+
+  // check if game board is full
+  let openSpots = game.board.filter(item => typeof item === "number");
+  console.log("open spots: ", openSpots);
+  if (openSpots.join('') === '' && winner === false) {
+    console.log("It's a draw!")
+    game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+    let squares = [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree];
+    squares.forEach((square) => {
+      square.textContent = "";
+    })
+
+  }
+
   return {winner}
 }
+
+function markUpBoard(square) {
+  let text = square.textContent;
+  if (text === "") {
+    if (game.turn % 2 === 0) {
+        square.textContent = "O";
+      } else {
+        square.textContent = "X";
+      }
+  }
+}
+
+// event listeners
+aOne.addEventListener("click", () => {
+  displayBoard(0);
+  markUpBoard(aOne);
+});
+
+aTwo.addEventListener("click", () => {
+  displayBoard(1);
+  markUpBoard(aTwo);
+});
+
+aThree.addEventListener("click", () => {
+  displayBoard(2);
+  markUpBoard(aThree);
+});
+
+bOne.addEventListener("click", () => {
+  displayBoard(3);
+  markUpBoard(bOne);
+});
+
+bTwo.addEventListener("click", () => {
+  displayBoard(4);
+  markUpBoard(bTwo);
+});
+
+bThree.addEventListener("click", () => {
+  displayBoard(5);
+  markUpBoard(bThree);
+});
+
+cOne.addEventListener("click", () => {
+  displayBoard(6);
+  markUpBoard(cOne);
+});
+
+cTwo.addEventListener("click", () => {
+  displayBoard(7);
+  markUpBoard(cTwo);
+});
+
+cThree.addEventListener("click", () => {
+  displayBoard(8);
+  markUpBoard(cThree);
+});
+
 
