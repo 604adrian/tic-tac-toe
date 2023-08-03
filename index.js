@@ -11,11 +11,13 @@ const cThree = document.querySelector("#eight");
 
 const game = {
   board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
+  boardBackup: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   winnState: 0,  // stores id for animations
   turn: 2,
   squares: [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree],
+  won: false
 }
 
 // players
@@ -33,8 +35,7 @@ const playerOne = createPlayer("billy", "X");
 const playerTwo = createPlayer("sally", "O");
 
 // winning animations
-function winningAnimation(theId, winner) {
-  console.log("I'm in")
+function winningAnimation(theId) {
   const body = document.querySelector("body");
   body.classList.add("background-pulse")
   switch (theId) {
@@ -84,11 +85,11 @@ function winningAnimation(theId, winner) {
 
 function checkForChecker(marker) {
   if (marker === "X") {
-    playerOne.counter++;
+    playerOne.counter += 1;
     let checker = game.xChecker;
     return checker;
   } 
-  playerTwo.counter++;
+  playerTwo.counter += 1;
   let checker = game.oChecker;
   return checker;
 }
@@ -121,18 +122,55 @@ function displayBoard(position) {
       
       // update x player's trackers
     checker[position] = player.marker;
-    playerOne.counter++;
-    let idNum = checker.filter(prime => prime !== player.marker);
-    let theId = idNum.reduce(function(product, value) { return product * value; });
+    console.log(player, player.counter);
 
-    winningValues.forEach((win) => {
-      if (theId === win) {
-        winningAnimation(theId, `${player.marker}`);
-        console.log(`${player.marker} wins`);
-        status = `${player.marker} wins`  
-        game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-      } 
-    });
+    let idNum = checker.filter(prime => prime !== player.marker);
+    console.log("checker: ", idNum);
+    let theId = idNum.reduce(function(product, value) { return product * value; });
+    let difference = game.boardBackup.filter(x => !idNum.includes(x)); // finds the difference
+    console.log("difference: ", difference);
+
+    if (player.counter === 5) {
+      difference.forEach((x) => {
+        difference.forEach((y) => {
+          let testTube = theId * x * y;
+          winningValues.forEach((win) => {
+            console.log(theId)
+            if (testTube === win) {
+              winningAnimation(testTube);
+              console.log(`${player.marker} wins`);
+              status = `${player.marker} wins`  
+              game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+            }  
+          });
+        });
+      });
+
+    } else if (player.counter === 4) {
+      difference.forEach((x) => {
+        let testTube = theId * x;
+        winningValues.forEach((win) => {
+          console.log(theId);
+          if (testTube === win) {
+            winningAnimation(testTube);
+            console.log(`${player.marker} wins`);
+            status = `${player.marker} wins`  
+            game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+          }
+        })
+      })
+    } else if (player.counter === 3) {
+      winningValues.forEach((win) => {
+        if (theId === win) {
+          winningAnimation(theId);
+          console.log(`${player.marker} wins`);
+          status = `${player.marker} wins`; 
+          game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+        } 
+      });
+    } else {
+      console.log("misc.")
+    }
 
     // switch turns
     game.turn++;
@@ -143,10 +181,10 @@ function displayBoard(position) {
   }
   
   // check
-  console.log(status);
   console.log(game.board);
+  let winner = game.won;
   
-  return {status}
+  return {winner}
 }
 
 // mark-up the gameboard
