@@ -184,6 +184,20 @@ function displayBoard(position) {
     console.log(game.board[position]);
     console.log("ERROR: position already taken, try again!")
   }
+
+  if (game.board.filter(x => (x !== ("O") && x !== ("X"))).join('') === '') {
+    if (game.won === false) {
+      game.squares.forEach((sqr) => {
+      sqr.classList.toggle("shaker");
+      });
+      setTimeout(() => {
+        game.squares.forEach((sqr) => {
+          sqr.classList.toggle("shaker");
+        })
+      }, 2000)
+      gameBoardReset();
+    }
+  }
   
   // check
   console.log(game.board);
