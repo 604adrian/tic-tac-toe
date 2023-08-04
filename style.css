@@ -16,7 +16,23 @@ body {
   border-left-style: none;
 }
 
-.row{
+#zero {
+  border-top-left-radius: 25px;
+}
+
+#two {
+  border-top-right-radius: 25px;
+}
+
+#six {
+  border-bottom-left-radius: 25px;
+}
+
+#eight {
+  border-bottom-right-radius: 25px;
+}
+
+.row {
   width: 100px;
   height: 100px;
   border-color: white;
@@ -45,10 +61,15 @@ body {
   text-align: center;
 }
 
-.shaker:hover {
+.warning {
+  color: red;
+  font-size: 80px;
+  text-align: "center";
+}
+
+.shaker {
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s; 
-
   /* When the animation is finished, start again */
   animation-iteration-count: infinite; 
 }
@@ -90,9 +111,8 @@ body {
   }
 }
 
-
 .plusating-animation {
-  background-color: orangered;
+  background-image: linear-gradient(#ff8a00, #e52e71); /* 16747008, 15019633 */
   animation-name: stretch;
   animation-duration: 0.1s;
   animation-timing-function: ease-out;

@@ -20,6 +20,10 @@ const game = {
   won: false
 }
 
+function gameBoardReset() {
+  game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]; 
+}
+
 // players
 function createPlayer(name, marker, counter) {
   return {
@@ -29,7 +33,6 @@ function createPlayer(name, marker, counter) {
   };
 }
 
-
 // players
 const playerOne = createPlayer("billy", "X");
 const playerTwo = createPlayer("sally", "O");
@@ -37,7 +40,7 @@ const playerTwo = createPlayer("sally", "O");
 // winning animations
 function winningAnimation(theId) {
   const body = document.querySelector("body");
-  body.classList.add("background-pulse")
+  body.classList.add("background-pulse");
   switch (theId) {
     case 7436429:
       aOne.classList.add("plusating-animation");
@@ -80,7 +83,6 @@ function winningAnimation(theId) {
       cThree.classList.add("plusating-animation");
       break;
   }
-  
 }
 
 function checkForChecker(marker) {
@@ -109,7 +111,7 @@ function displayBoard(position) {
 
   // prime factorization for identification
   const winningValues = [7436429, 222870, 30030, 440895, 238602, 937365, 355810, 149226]
-
+  
   // marking free space
   let testType = typeof game.board[position];
   if (testType === "number") {
@@ -135,12 +137,12 @@ function displayBoard(position) {
         difference.forEach((y) => {
           let testTube = theId * x * y;
           winningValues.forEach((win) => {
-            console.log(theId)
             if (testTube === win) {
               winningAnimation(testTube);
               console.log(`${player.marker} wins`);
-              status = `${player.marker} wins`  
-              game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+              status = `${player.marker} wins`;
+              game.won = player;
+              gameBoardReset();
             }  
           });
         });
@@ -150,24 +152,27 @@ function displayBoard(position) {
       difference.forEach((x) => {
         let testTube = theId * x;
         winningValues.forEach((win) => {
-          console.log(theId);
           if (testTube === win) {
             winningAnimation(testTube);
             console.log(`${player.marker} wins`);
             status = `${player.marker} wins`  
-            game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
+            game.won = player;
+            gameBoardReset();
           }
         })
       })
+
     } else if (player.counter === 3) {
       winningValues.forEach((win) => {
         if (theId === win) {
           winningAnimation(theId);
           console.log(`${player.marker} wins`);
           status = `${player.marker} wins`; 
-          game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+          game.won = player;
+          gameBoardReset();
         } 
       });
+
     } else {
       console.log("misc.")
     }
@@ -191,35 +196,75 @@ function displayBoard(position) {
 function markUpBoard(square) {
 
   // remove shaker animation
-  game.squares.forEach((sqr) => {
-    sqr.classList.remove("shaker");
-    sqr.style.color = "white";
-  });
+  //game.squares.forEach((sqr) => {
+    //sqr.classList.remove("shaker");
+    //sqr.style.color = "white";
+  //});
 
-  // mark spot
-  let text = square.textContent;
-  if (text === "") {
-    if (game.turn % 2 === 0) {
-      square.textContent = "X";
+  if (game.won === false) {
+
+    // mark spot
+    let text = square.textContent;
+    if (text === "") {
+      switch (square) {
+        case aOne:
+          displayBoard(0);
+          break;
+        case aTwo:
+          displayBoard(1);
+          break;
+        case aThree:
+          displayBoard(2);
+          break;
+        case bOne:
+          displayBoard(3);
+          break;
+        case bTwo:
+          displayBoard(4);
+          break;
+        case bThree:
+          displayBoard(5);
+          break;
+        case cOne:
+          displayBoard(6);
+          break;
+        case cTwo:
+          displayBoard(7);
+          break;
+        case cThree:
+          displayBoard(8);
+          break;
+      }
+
+      if (game.turn % 2 === 0) {
+        square.textContent = "X";
+      } else {
+        square.textContent = "O";
+      }
+
     } else {
-      square.textContent = "O";
+      square.classList.toggle("shaker");
+      square.classList.toggle("warning");
+      function removeToggles() {
+        square.classList.toggle("warning");
+        square.classList.toggle("shaker");
+      }
+      setTimeout(() => {
+        removeToggles();
+      }, 500)
     }
-  } else {
-    square.classList.add("shaker");
-    square.style.color = "red";
-    square.style.fontSize = "80px";
-    square.style.textAlign = "center";
-  }
 
-  // check for draw
-  if (status === false && openSpots.join('') === '') {
-    let openSpots = game.board.filter(item => typeof item === "number");
-    console.log("open spots: ", openSpots);
-    console.log("It's a draw!")
-    game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]
-    game.squares.forEach((square) => {
-      square.textContent = "";
+   
+
+  } else {
+    game.squares.forEach((sqr) => {
+      sqr.classList.toggle("shaker");
     });
+    setTimeout(() => {
+      game.squares.forEach((sqr) => {
+        sqr.classList.toggle("shaker");
+      })
+    }, 500)
   }
 
   return
@@ -228,47 +273,38 @@ function markUpBoard(square) {
 // event listeners
 aOne.addEventListener("click", () => {
   markUpBoard(aOne);
-  displayBoard(0);
 });
 
 aTwo.addEventListener("click", () => {
   markUpBoard(aTwo);
-  displayBoard(1);
 });
 
 aThree.addEventListener("click", () => {
   markUpBoard(aThree);
-  displayBoard(2);
 });
 
 bOne.addEventListener("click", () => {
   markUpBoard(bOne);
-  displayBoard(3);
 });
 
 bTwo.addEventListener("click", () => {
   markUpBoard(bTwo);
-  displayBoard(4);
 });
 
 bThree.addEventListener("click", () => {
   markUpBoard(bThree);
-  displayBoard(5);
 });
 
 cOne.addEventListener("click", () => {
   markUpBoard(cOne);
-  displayBoard(6);
 });
 
 cTwo.addEventListener("click", () => {
   markUpBoard(cTwo);
-  displayBoard(7);
 });
 
 cThree.addEventListener("click", () => {
   markUpBoard(cThree);
-  displayBoard(8);
 });
 
 
