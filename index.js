@@ -8,6 +8,7 @@ const bThree = document.querySelector("#five");
 const cOne = document.querySelector("#six");
 const cTwo = document.querySelector("#seven");
 const cThree = document.querySelector("#eight");
+const message = document.querySelector("#message");
 
 const game = {
   board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
@@ -187,6 +188,8 @@ function displayBoard(position) {
 
   if (game.board.filter(x => (x !== ("O") && x !== ("X"))).join('') === '') {
     if (game.won === false) {
+      gameBoardReset();
+      game.won = null;
       game.squares.forEach((sqr) => {
       sqr.classList.toggle("shaker");
       });
@@ -195,7 +198,6 @@ function displayBoard(position) {
           sqr.classList.toggle("shaker");
         })
       }, 2000)
-      gameBoardReset();
     }
   }
   

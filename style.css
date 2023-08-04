@@ -14,6 +14,7 @@ body {
   grid-template-rows: repeat(3, 100px);
   margin: 100px;
   border-left-style: none;
+  margin-top: 15vh;
 }
 
 #zero {
@@ -67,10 +68,28 @@ body {
   text-align: "center";
 }
 
+#message {
+  font-size: 80px;
+  color: grey;
+  margin: 1px;
+}
+
+.inOutMessage {
+  animation: fade 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeinout {
+  from {
+    transform: scale(0) translate(-100%, -100%)
+  }
+  to {
+    transform: scale(1) translate(-100%, -100%);
+  }
+}
+
 .shaker {
-  /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s; 
-  /* When the animation is finished, start again */
   animation-iteration-count: infinite; 
 }
 
