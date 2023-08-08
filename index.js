@@ -1,4 +1,4 @@
-// DOM elements
+// squares on tic-tac-toe board
 const aOne = document.querySelector("#zero");
 const aTwo = document.querySelector("#one");
 const aThree = document.querySelector("#two");
@@ -9,12 +9,14 @@ const cOne = document.querySelector("#six");
 const cTwo = document.querySelector("#seven");
 const cThree = document.querySelector("#eight");
 
-// h2 elements 
+// gui text end-game elements 
 const ticTac = document.querySelector("#ticTacToeBoard");
 const h2 = document.createElement("h2");
 h2.textContent = "";
 ticTac.appendChild(h2);
 
+
+// object for game
 const game = {
   board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   boardBackup: [2, 3, 5, 7, 11, 13, 17, 19, 23],
@@ -26,9 +28,12 @@ const game = {
   won: false
 }
 
+
+// resets the gameboard
 function gameBoardReset() {
   game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]; 
 }
+
 
 // players
 function createPlayer(name, marker, counter) {
@@ -42,6 +47,7 @@ function createPlayer(name, marker, counter) {
 // players
 const playerOne = createPlayer("billy", "X");
 const playerTwo = createPlayer("sally", "O");
+
 
 // winning animations
 function winningAnimation(theId) {
@@ -91,6 +97,7 @@ function winningAnimation(theId) {
   }
 }
 
+
 // track potential redundancies
 function checkForChecker(marker) {
   if (marker === "X") {
@@ -102,6 +109,7 @@ function checkForChecker(marker) {
   let checker = game.oChecker;
   return checker;
 }
+
 
 // change status update
 function guiStatusUpdate(term) {
@@ -127,8 +135,9 @@ function guiStatusUpdate(term) {
   setTimeout(() => {
     //h2.textContent = "";
     removeToggles();
-  }, 750)
+  }, 1000)
 }
+
 
 // a game win
 function makeWin() {
@@ -138,6 +147,7 @@ function makeWin() {
   guiStatusUpdate(theMark);
   gameBoardReset();
 }
+
 
 // logic for game
 function displayBoard(position) {
@@ -157,6 +167,7 @@ function displayBoard(position) {
   
   // marking free space
   let testType = typeof game.board[position];
+  console.log(game.board);
   if (testType === "number") {
 
     let marker = player.marker;
@@ -246,6 +257,7 @@ function displayBoard(position) {
   return {winner}
 }
 
+
 // mark-up the gameboard
 function markUpBoard(square) {
 
@@ -317,6 +329,7 @@ function markUpBoard(square) {
   return
 }
 
+
 // event listeners
 aOne.addEventListener("click", () => {
   markUpBoard(aOne);
@@ -354,4 +367,18 @@ cThree.addEventListener("click", () => {
   markUpBoard(cThree);
 });
 
-
+// restart button
+const restart = document.querySelector("#restart-button");
+restart.addEventListener("click", () => {
+  game.squares.forEach((sqr) => {
+    sqr.textContent = "";
+    sqr.classList.remove("plusating-animation");
+  });
+  playerOne.counter = 0;
+  playerTwo.counter = 0;
+  game.won = false;
+  game.xChecker = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+  game.oChecker = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+  game.turn = 2;
+  gameBoardReset();
+}) 
