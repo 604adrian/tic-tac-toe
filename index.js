@@ -8,7 +8,12 @@ const bThree = document.querySelector("#five");
 const cOne = document.querySelector("#six");
 const cTwo = document.querySelector("#seven");
 const cThree = document.querySelector("#eight");
-const message = document.querySelector("#message");
+
+// h2 elements 
+const ticTac = document.querySelector("#ticTacToeBoard");
+const h2 = document.createElement("h2");
+h2.textContent = "";
+ticTac.appendChild(h2);
 
 const game = {
   board: [2, 3, 5, 7, 11, 13, 17, 19, 23],
@@ -86,6 +91,7 @@ function winningAnimation(theId) {
   }
 }
 
+// track potential redundancies
 function checkForChecker(marker) {
   if (marker === "X") {
     playerOne.counter += 1;
@@ -95,6 +101,42 @@ function checkForChecker(marker) {
   playerTwo.counter += 1;
   let checker = game.oChecker;
   return checker;
+}
+
+// change status update
+function guiStatusUpdate(term) {
+  console.log("in in guiStatusUpdate");
+  switch (term) {
+    case ("X"):
+      h2.textContent = `${playerOne.name} wins!`;
+      console.log(h2.textContent);
+      break;
+    case ("O"):
+      h2.textContent = `${playerTwo.name} wins!`;
+      console.log(h2.textContent);
+      break;
+    case ("draw"):
+      h2.textContent = `It's a draw!`;
+      console.log(h2.textContent);
+      break;
+  }
+  function removeToggles() {
+    h2.classList.toggle("inOutMessage");
+  }
+  h2.classList.toggle("inOutMessage");
+  setTimeout(() => {
+    //h2.textContent = "";
+    removeToggles();
+  }, 750)
+}
+
+// a game win
+function makeWin() {
+  console.log("inside makewin");
+  console.log(`${game.won.marker}`);
+  let theMark = game.won.marker;
+  guiStatusUpdate(theMark);
+  gameBoardReset();
 }
 
 // logic for game
@@ -140,10 +182,8 @@ function displayBoard(position) {
           winningValues.forEach((win) => {
             if (testTube === win) {
               winningAnimation(testTube);
-              console.log(`${player.marker} wins`);
-              status = `${player.marker} wins`;
-              game.won = player;
-              gameBoardReset();
+              game.won = player 
+              makeWin();
             }  
           });
         });
@@ -155,10 +195,8 @@ function displayBoard(position) {
         winningValues.forEach((win) => {
           if (testTube === win) {
             winningAnimation(testTube);
-            console.log(`${player.marker} wins`);
-            status = `${player.marker} wins`  
-            game.won = player;
-            gameBoardReset();
+            game.won = player 
+            makeWin();
           }
         })
       })
@@ -167,10 +205,8 @@ function displayBoard(position) {
       winningValues.forEach((win) => {
         if (theId === win) {
           winningAnimation(theId);
-          console.log(`${player.marker} wins`);
-          status = `${player.marker} wins`; 
           game.won = player;
-          gameBoardReset();
+          makeWin();
         } 
       });
 
@@ -186,12 +222,14 @@ function displayBoard(position) {
     console.log("ERROR: position already taken, try again!")
   }
 
+  // draw
   if (game.board.filter(x => (x !== ("O") && x !== ("X"))).join('') === '') {
     if (game.won === false) {
       gameBoardReset();
       game.won = null;
+      guiStatusUpdate("draw");
       game.squares.forEach((sqr) => {
-      sqr.classList.toggle("shaker");
+        sqr.classList.toggle("shaker");
       });
       setTimeout(() => {
         game.squares.forEach((sqr) => {
@@ -211,14 +249,7 @@ function displayBoard(position) {
 // mark-up the gameboard
 function markUpBoard(square) {
 
-  // remove shaker animation
-  //game.squares.forEach((sqr) => {
-    //sqr.classList.remove("shaker");
-    //sqr.style.color = "white";
-  //});
-
   if (game.won === false) {
-
     // mark spot
     let text = square.textContent;
     if (text === "") {
@@ -253,9 +284,9 @@ function markUpBoard(square) {
       }
 
       if (game.turn % 2 === 0) {
-        square.textContent = "X";
-      } else {
         square.textContent = "O";
+      } else {
+        square.textContent = "X";
       }
 
     } else {

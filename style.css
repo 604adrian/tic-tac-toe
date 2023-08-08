@@ -3,6 +3,10 @@ h1 {
   color: white;
 }
 
+h2 { 
+  color: transparent;
+}
+
 body {
   background-color: #222222;
 }
@@ -75,18 +79,68 @@ body {
 }
 
 .inOutMessage {
-  animation: fade 0.5s;
+  animation: fadeinout 0.5s;
+  animation-duration: 750ms;
   animation-iteration-count: 1;
 }
 
 @keyframes fadeinout {
-  from {
-    transform: scale(0) translate(-100%, -100%)
+  0%    { 
+    transform: scale(-1);
+    opacity: 0;
+    color: yellow;
   }
-  to {
-    transform: scale(1) translate(-100%, -100%);
+  10%   { 
+    transform: scale(-0.5); 
+    opacity: 0.20;
+    color: blue;
   }
-}
+  20%   { 
+    transform: scale(0); 
+    opacity: 0.40;
+    color: yellow;
+  }
+  30%   { 
+    transform: scale(0.5); 
+    opacity: 0.60;
+    color: blue;
+  }
+  40%   { 
+    transform: scale(1); 
+    opacity: 0.80;
+    color: yellow;
+  }
+  50%   { 
+    transform: scale(1.5); 
+    opacity: 1;
+    color: blue;
+  }
+  60%   { 
+    transform: scale(2); 
+    opacity: 0.80;
+    color: yellow;
+  }
+  70%   { 
+    transform: scale(2.5); 
+    opacity: 0.60;
+    color: blue;
+  }
+  80%   { 
+    transform: scale(3); 
+    opacity: 0.40;
+    color: yellow;
+  }
+  90%   { 
+    transform: scale(3.5); 
+    opacity: 0.20;
+    color: blue;
+  }
+  100%  { 
+    transform: scale(4);
+    opacity: 0;
+    color: transparent;
+  }
+}  
 
 .shaker {
   animation: shake 0.5s; 
