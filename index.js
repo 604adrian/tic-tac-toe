@@ -1,5 +1,6 @@
 // DOM
 const ticTac = document.querySelector("#ticTacToeBoard");
+const body = document.querySelector("body");
 
 // squares on tic-tac-toe board
 const aOne = document.querySelector("#zero");
@@ -15,7 +16,7 @@ const cThree = document.querySelector("#eight");
 // gui text end-game elements 
 const h2 = document.createElement("h2");
 h2.textContent = "";
-ticTac.appendChild(h2);
+body.appendChild(h2);
 
 const restart = document.querySelector("#restart-button");
 const buttonBoard = document.querySelector("#button-board");
