@@ -1,3 +1,6 @@
+// DOM
+const ticTac = document.querySelector("#ticTacToeBoard");
+
 // squares on tic-tac-toe board
 const aOne = document.querySelector("#zero");
 const aTwo = document.querySelector("#one");
@@ -10,11 +13,12 @@ const cTwo = document.querySelector("#seven");
 const cThree = document.querySelector("#eight");
 
 // gui text end-game elements 
-const ticTac = document.querySelector("#ticTacToeBoard");
 const h2 = document.createElement("h2");
 h2.textContent = "";
 ticTac.appendChild(h2);
 
+const restart = document.querySelector("#restart-button");
+const buttonBoard = document.querySelector("#button-board");
 
 // object for game
 const game = {
@@ -26,22 +30,6 @@ const game = {
   turn: 2,
   squares: [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree],
   won: false
-}
-
-
-// resets the gameboard
-function gameBoardReset() {
-  game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]; 
-}
-
-
-// players
-function createPlayer(name, marker, counter) {
-  return {
-    name: name,
-    marker: marker,
-    counter: 0,
-  };
 }
 
 // players
@@ -98,6 +86,37 @@ function winningAnimation(theId) {
 }
 
 
+// resets the gameboard
+function gameBoardReset() {
+  game.board = [2, 3, 5, 7, 11, 13, 17, 19, 23]; 
+}
+
+
+// resets the gameboard and everything else, too
+function fullRestart() {
+  playerOne.counter = 0;
+  playerTwo.counter = 0;
+  game.won = false;
+  game.xChecker = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+  game.oChecker = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+  game.turn = 2;
+  gameBoardReset();
+  game.squares.forEach((sqr) => {
+    sqr.textContent = "";
+    sqr.classList.remove("plusating-animation");
+  });
+}
+
+// players
+function createPlayer(name, marker, counter) {
+  return {
+    name: name,
+    marker: marker,
+    counter: 0,
+  };
+}
+
+
 // track potential redundancies
 function checkForChecker(marker) {
   if (marker === "X") {
@@ -108,7 +127,7 @@ function checkForChecker(marker) {
   playerTwo.counter += 1;
   let checker = game.oChecker;
   return checker;
-}
+};
 
 
 // change status update
@@ -133,7 +152,7 @@ function guiStatusUpdate(term) {
   }
   h2.classList.toggle("inOutMessage");
   setTimeout(() => {
-    //h2.textContent = "";
+    h2.textContent = "";
     removeToggles();
   }, 1000)
 }
@@ -368,17 +387,6 @@ cThree.addEventListener("click", () => {
 });
 
 // restart button
-const restart = document.querySelector("#restart-button");
 restart.addEventListener("click", () => {
-  game.squares.forEach((sqr) => {
-    sqr.textContent = "";
-    sqr.classList.remove("plusating-animation");
-  });
-  playerOne.counter = 0;
-  playerTwo.counter = 0;
-  game.won = false;
-  game.xChecker = [2, 3, 5, 7, 11, 13, 17, 19, 23];
-  game.oChecker = [2, 3, 5, 7, 11, 13, 17, 19, 23];
-  game.turn = 2;
-  gameBoardReset();
+ fullRestart();
 }) 
