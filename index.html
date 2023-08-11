@@ -27,20 +27,18 @@
             <label
               class="label"
               for="player1">Name for Player 1: </label>
-            <input
-              class="inputter"
-              type="text"
-              id="player1"
-              required
-              minlength="1"
-              maxlength="10"
-             />
-            <input
-              class="sub-but"
-              id="player1-submit"
-              type="submit"
-            ></input>
-
+            <div class="input-container">
+              <input
+                class="inputter"
+                type="text"
+                id="player1"
+                required
+                minlength="1"
+                maxlength="40"
+               />
+              <p id="first-checker" class="checkers"></p>
+            </div>
+            
             <div class="player-type">
               <h3 class="for-radio">This player will be (select one) :</h3>
               <div class="radio-select">
@@ -71,21 +69,19 @@
             <label
               class="label"
               for="player2">Name for Player 2:</label>
-            <input
-              class="inputter"
-              type="text"
-              id="player2"
-              required
-              minlength="1"
-              maxlength="10"
-              name="peson-or-robot-2"
-             />
-            <input
-              class="sub-but"
-              id="player2-submit"
-              type="submit"
-            ></input>
-
+            <div class="input-container">
+              <input
+                class="inputter"
+                type="text"
+                id="player2"
+                required
+                minlength="1"
+                maxlength="40"
+                name="peson-or-robot-2"
+               />
+              <p id="second-checker" class="checkers"></p>
+            </div>
+            
             <div class="player-type">
               <h3 class="for-radio">This player will be (select one) :</h3>
               <div class="radio-select">
@@ -107,7 +103,7 @@
                 <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
               </div>
             </div>
-
+0
           </div>
         </div>
 
@@ -117,6 +113,6 @@
         </div>
 
       </div>
-      <script type="module" src="js/intro.js"></script>
+      <script src="js/intro.js"></script>
   </body>
 </html>

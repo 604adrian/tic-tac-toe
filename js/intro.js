@@ -1,28 +1,73 @@
-// players
-function createPlayer(name, marker, counter) {
-  return {
-    name: name,
-    marker: marker,
-    counter: 0,
-  };
+// DOM ELEMENTS
+// store DOM values for names
+const p1DOM = document.querySelector("#player1");
+const p2DOM = document.querySelector("#player2");
+// the okay button
+const okayButton = document.querySelector("#okay-button");
+// the checkers
+const checker1 = document.querySelector("#first-checker");
+const checker2 = document.querySelector("#second-checker");
+
+// write value
+function p1() {
+  return p2DOM.value;
 }
 
-// store DOM values for names
-const player1 = document.querySelector("#player1");
-player1.textContent = player1.value;
-const player1Name = player1.textContent;
-
-const player2 = document.querySelector("#player2");
-player2.textContent = player2.value;
-const player2Name = player2.textContent;
+function p2() {
+  return p2DOM.value;
+}
 
 // players
-const playerOno = createPlayer(player1Name, "X");
-const playerDuo = createPlayer(player2Name, "O");
+class Player {
+  constructor(name, marker) {
+    this.name = name;
+    this.marker = marker;
+    this.counter = 0;
+  }
+}
+
+
+let p2Name = p2();
+let p1Name = p1();
+
+let playerTwo = new Player(p2Name, "O");
+let playerOne = new Player(p1Name, "X");
+
+
+// EVENT LISTENERS
+p1DOM.addEventListener("input", () => {
+  if (p1DOM.value !== playerTwo.name) {
+    if (p1DOM.value.length > 1) {
+      checker1.textContent = "❌"; 
+    }
+    checker1.textContent = "✅";
+    playerOne.name = p1DOM.value;
+  } else {
+    checker1.textContent = "❌";
+  }
+  checker1.classList.toggle("shaker");
+  setTimeout(() => {
+    checker1.classList.toggle("shaker");
+  }, 100);
+})
+
+p2DOM.addEventListener("input", () => {
+  if (playerOne.name !== p2DOM.value) {
+    checker2.textContent = "✅";
+    playerTwo.name = p2DOM.value;
+  } else {
+    checker2.textContent = "❌";
+  }
+  checker2.classList.toggle("shaker");
+  setTimeout(() => {
+    checker2.classList.toggle("shaker");
+  }, 100);
+})
 
 // the okaybutton
-const okayButton = document.querySelector("#okay-button");
-okayButton.addEventListener("click", ()=> {
+okayButton.addEventListener("click", () => {
   window.location.assign("game.html");
 });
 
+
+export { playerOne, playerTwo };

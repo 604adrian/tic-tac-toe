@@ -1,5 +1,4 @@
-import { playerOno as playerOne } from "./intro.js";
-import { playerDuo as playerTwo } from "./intro.js";
+import { playerOne, playerTwo } from "./intro.js";
 
 // squares on tic-tac-toe board
 const aOne = document.querySelector("#zero");

@@ -269,24 +269,29 @@ body {
   margin-bottom: 10px;
 }
 
+.input-container {
+  background-color: black;
+  height: 35px;
+  width: 300px;
+  padding: 0;
+  border-color: white;
+  border-style: solid;
+  padding: 5px;
+  padding-bottom: 9px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 8fr 2fr;
+}
+
 .inputter {
   background-color: black;
   color: white;
   font-size: 1.5em;
   height: 35px;
+  width: 250px;
   margin-right: 0;
-  padding-right: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 10px;
-}
-
-.sub-but {
-  height: 35px;
-  margin-left: -4px;
-  padding-left: 0;
-  font-size: 1em;
-  margin-top: -10px;
+  padding: 0; 
+  border-color: transparent;
 }
 
 #name-element {
@@ -295,20 +300,20 @@ body {
   margin-top: 30px;
   display: grid;
   grid-template-rows: 2fr 2fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .shebang {
   "IBM Plex Mono", cursive;
   color: white;
+  margin: auto;
 }
  
 #shebang1 {
-  margin-right: auto;
   
 }
 
 #shebang2 {
-  margin-left: auto;
 }
 
 .for-radio {
@@ -332,4 +337,13 @@ body {
 #item-in-col {
   margin-bottom: 40px;
   margin-top: 40px;
+}
+
+.checkers {
+  text-align: center;
+  height: auto;
+  width: auto;
+  margin: auto;
+  padding: 0;
+  padding-left: 10px;
 }
