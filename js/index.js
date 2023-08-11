@@ -1,33 +1,5 @@
-// players
-function createPlayer(name, marker, counter) {
-  return {
-    name: name,
-    marker: marker,
-    counter: 0,
-  };
-}
-
-// store DOM values for names
-const player1 = document.querySelector("#player1");
-const player1Name = player1.value;
-
-const player2 = document.querySelector("#player2");
-const player2Name = player2.value;
-
-// players
-const playerOne = createPlayer(player1Name, "X");
-const playerTwo = createPlayer(player2Name, "O");
-
-// the okaybutton
-const okayButton = document.querySelector("#okay-button");
-okayButton.addEventListener("click", ()=> {
-  window.location.assign("game.html");
-});
-
-
-// DOM
-const ticTac = document.querySelector("#ticTacToeBoard");
-const body = document.querySelector("body");
+import { playerOno as playerOne } from "./intro.js";
+import { playerDuo as playerTwo } from "./intro.js";
 
 // squares on tic-tac-toe board
 const aOne = document.querySelector("#zero");
@@ -39,6 +11,7 @@ const bThree = document.querySelector("#five");
 const cOne = document.querySelector("#six");
 const cTwo = document.querySelector("#seven");
 const cThree = document.querySelector("#eight");
+const body = document.querySelector("body");
 
 // gui text end-game elements 
 const h2 = document.createElement("h2");
