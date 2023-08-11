@@ -12,23 +12,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=IBM+Plex+Mono:wght@100&family=Space+Mono&display=swap" rel="stylesheet"> 
-
-    <style>
-      * {
-        color: white;
-        font: "IBM Plex Mono", cursive;
-        font-weight: 0.5; 
-      }
-    </style>
   </head>
-  <body>
+  <body id="landing-body">
     <h1>Can you tic-tac your toe?</h1>
     <h2 class="actual-h2">Pick a name</h2>
 
     <div id="name-element">
 
         <!--- first input -->
-        <div class="shebang" id="shebang1"> 
+        <div class="shebang item-in-col" id="shebang1"> 
 
           <div id="first-input">
           <hr />
@@ -38,14 +30,14 @@
             <input
               class="inputter"
               type="text"
-              id="player2"
+              id="player1"
               required
               minlength="1"
               maxlength="10"
              />
             <input
               class="sub-but"
-              id="player1"
+              id="player1-submit"
               type="submit"
             ></input>
 
@@ -73,7 +65,7 @@
         </div>
 
         <!--- second input -->
-        <div class="shebang "id="shebang2">
+        <div class="shebang item-in-col" id="shebang2">
         <hr />
           <div id="second-input">
             <label
@@ -90,7 +82,7 @@
              />
             <input
               class="sub-but"
-              id="label-for-player2"
+              id="player2-submit"
               type="submit"
             ></input>
 
@@ -119,7 +111,13 @@
           </div>
         </div>
 
+        <div class="item-in-col">
+          <hr>
+          <button id="okay-button">Okay</button>
+        </div>
+
       </div>
-    <script src="js/intro.js"></script>
+      <script src="js/intro.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

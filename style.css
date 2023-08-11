@@ -258,6 +258,10 @@ body {
 }
 
 /* Start up screen */
+#landing-body {
+  color: grey;
+}
+
 .label {
   color: white;
   display: block;
@@ -305,7 +309,6 @@ body {
 
 #shebang2 {
   margin-left: auto;
-  margin-top: 20vh;
 }
 
 .for-radio {
@@ -320,4 +323,13 @@ body {
 
 .radio-label {
   font-size: 2em;
+}
+
+#okay-button {
+  width: 300px;
+}
+
+#item-in-col {
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
