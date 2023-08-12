@@ -45,13 +45,16 @@ body {
   width: 290px;
   margin: auto;
   margin-top: 5vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
-#restart-button {
-  width: 290px;
-  height: 40px;
-  margin: auto;
+.game-button {
   font-size: 1.5rem;
+  height: 40px;
+  border-radius: 5px;
+  background-color: white;
 }
 
 #zero {
@@ -295,9 +298,7 @@ body {
 }
 
 #name-element {
-  margin: auto;
-  width: 100px;
-  margin-top: 30px;
+  height: 100vh;
   display: grid;
   grid-template-rows: 2fr 2fr 1fr;
   grid-template-columns: 1fr;
@@ -346,4 +347,14 @@ body {
   margin: auto;
   padding: 0;
   padding-left: 10px;
+}
+
+.landing-screen-opened {
+  height: 100vh;
+}
+
+.landing-screen-closed {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }

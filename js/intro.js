@@ -7,6 +7,9 @@ const okayButton = document.querySelector("#okay-button");
 // the checkers
 const checker1 = document.querySelector("#first-checker");
 const checker2 = document.querySelector("#second-checker");
+// the game
+const theGame = document.querySelector("#the-game");
+const start = document.querySelector("#landing-screen");
 
 // write value
 function p1() {
@@ -29,12 +32,21 @@ class Player {
 
 let p2Name = p2();
 let p1Name = p1();
+const players = [];
 
-let playerTwo = new Player(p2Name, "O");
-let playerOne = new Player(p1Name, "X");
+let playerOne = new Player(p2Name, "O");
+let playerTwo = new Player(p1Name, "X");
+players.push(playerOne);
+players.push(playerTwo);
 
+const test = 123;
 
 // EVENT LISTENERS
+window.addEventListener("load", () => {
+  theGame.classList.add("landing-screen-closed");
+  start.classList.add("landing-screen-opened")
+});
+
 p1DOM.addEventListener("input", () => {
   if (p1DOM.value !== playerTwo.name) {
     if (p1DOM.value.length > 1) {
@@ -66,8 +78,8 @@ p2DOM.addEventListener("input", () => {
 
 // the okaybutton
 okayButton.addEventListener("click", () => {
-  window.location.assign("game.html");
+  console.log("test");
+  start.classList.add("landing-screen-closed");
+  theGame.classList.remove("landing-screen-closed");
 });
 
-
-export { playerOne, playerTwo };

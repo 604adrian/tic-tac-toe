@@ -13,106 +13,132 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300&family=IBM+Plex+Mono:wght@100&family=Space+Mono&display=swap" rel="stylesheet"> 
   </head>
-  <body id="landing-body">
-    <h1>Can you tic-tac your toe?</h1>
-    <h2 class="actual-h2">Pick a name</h2>
+  <body id="landing-page" class="landing-page-open">
 
-    <div id="name-element">
+    <!--- LANDING SCREEN --->
+    <div id="landing-screen">
+      <h1>Can you tic-tac your toe?</h1>
+      <h2 class="actual-h2">Pick a name</h2>
 
-        <!--- first input -->
-        <div class="shebang item-in-col" id="shebang1"> 
+      <div id="name-element">
 
-          <div id="first-input">
+          <!--- FIRST USER INPUT -->
+          <div class="shebang item-in-col" id="shebang1"> 
+
+            <div id="first-input">
+            <hr />
+              <label
+                class="label"
+                for="player1">Name for Player 1: </label>
+              <div class="input-container">
+                <input
+                  class="inputter"
+                  type="text"
+                  id="player1"
+                  required
+                  minlength="1"
+                  maxlength="40"
+                 />
+                <p id="first-checker" class="checkers"></p>
+              </div>
+              
+              <div class="player-type">
+                <h3 class="for-radio">This player will be (select one) :</h3>
+                <div class="radio-select">
+                  <input
+                    type="radio"
+                    id="radio-p1a"
+                    name="peson-or-robot-1"
+                    checked
+                   />
+                  <label class="radio-label" for="radio-p2a"> 🧑 A person</label>
+                </div>
+                <div class="radio-select">
+                  <input
+                    type="radio"
+                    id="radio-p2"
+                    name="peson-or-robot-1"
+                    checked
+                   />
+                  <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
+                </div>
+            </div>
+          </div>
+
+          <!--- SECOND USER INPUT -->
+          <div class="shebang item-in-col" id="shebang2">
           <hr />
-            <label
-              class="label"
-              for="player1">Name for Player 1: </label>
-            <div class="input-container">
-              <input
-                class="inputter"
-                type="text"
-                id="player1"
-                required
-                minlength="1"
-                maxlength="40"
-               />
-              <p id="first-checker" class="checkers"></p>
+            <div id="second-input">
+              <label
+                class="label"
+                for="player2">Name for Player 2:</label>
+              <div class="input-container">
+                <input
+                  class="inputter"
+                  type="text"
+                  id="player2"
+                  required
+                  minlength="1"
+                  maxlength="40"
+                  name="peson-or-robot-2"
+                 />
+                <p id="second-checker" class="checkers"></p>
+              </div>
+              
+              <div class="player-type">
+                <h3 class="for-radio">This player will be (select one) :</h3>
+                <div class="radio-select">
+                  <input
+                    type="radio"
+                    id="radio-p1a"
+                    name="peson-or-robot-2"
+                    checked
+                   />
+                  <label class="radio-label" for="radio-p2a"> 🧑 A person</label>
+                </div>
+                <div class="radio-select">
+                  <input
+                    type="radio"
+                    id="radio-p2"
+                    name="peson-or-robot-2"
+                    checked
+                   />
+                  <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
+                </div>
+              </div>
+  0
             </div>
-            
-            <div class="player-type">
-              <h3 class="for-radio">This player will be (select one) :</h3>
-              <div class="radio-select">
-                <input
-                  type="radio"
-                  id="radio-p1a"
-                  name="peson-or-robot-1"
-                  checked
-                 />
-                <label class="radio-label" for="radio-p2a"> 🧑 A person</label>
-              </div>
-              <div class="radio-select">
-                <input
-                  type="radio"
-                  id="radio-p2"
-                  name="peson-or-robot-1"
-                  checked
-                 />
-                <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
-              </div>
+          </div>
+
+          <div class="item-in-col">
+            <hr>
+            <button id="okay-button">Okay</button>
           </div>
         </div>
-
-        <!--- second input -->
-        <div class="shebang item-in-col" id="shebang2">
-        <hr />
-          <div id="second-input">
-            <label
-              class="label"
-              for="player2">Name for Player 2:</label>
-            <div class="input-container">
-              <input
-                class="inputter"
-                type="text"
-                id="player2"
-                required
-                minlength="1"
-                maxlength="40"
-                name="peson-or-robot-2"
-               />
-              <p id="second-checker" class="checkers"></p>
-            </div>
-            
-            <div class="player-type">
-              <h3 class="for-radio">This player will be (select one) :</h3>
-              <div class="radio-select">
-                <input
-                  type="radio"
-                  id="radio-p1a"
-                  name="peson-or-robot-2"
-                  checked
-                 />
-                <label class="radio-label" for="radio-p2a"> 🧑 A person</label>
-              </div>
-              <div class="radio-select">
-                <input
-                  type="radio"
-                  id="radio-p2"
-                  name="peson-or-robot-2"
-                  checked
-                 />
-                <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
-              </div>
-            </div>
-0
-          </div>
-        </div>
-
-        <div class="item-in-col">
-          <hr>
-          <button id="okay-button">Okay</button>
-        </div>
-
       </div>
-      <script src="js/intro.js"></script>
+    </div>
+
+
+    <!--- ACTUAL GAME --->
+    <div id="the-game">
+      <h1>Can you tic-tac your toe?</h1>
+      <div id=ticTacToeBoard>
+        <div class="row left top" id="zero"></div>
+        <div class="row middle top" id="one"></div>
+        <div class="row right top" id="two"></div>
+        <div class="row left" id="three"></div>
+        <div class="row middle" id="four"></div>
+        <div class="row right" id="five"></div>
+        <div class="row left bottom" id="six"></div>
+        <div class="row middle bottom" id="seven"></div>
+        <div class="row right bottom" id="eight"></div>
+      </div>
+      <div id="button-board">
+        <button id='total-reset' class='game-button'>Total reset</button>
+        <button id="restart-button" class='game-button'>Restart game</button>
+      </div>
+    </div>
+    <script src="js/intro.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

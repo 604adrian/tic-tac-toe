@@ -1,5 +1,3 @@
-import { playerOne, playerTwo } from "./intro.js";
-
 // squares on tic-tac-toe board
 const aOne = document.querySelector("#zero");
 const aTwo = document.querySelector("#one");
@@ -17,6 +15,7 @@ const h2 = document.createElement("h2");
 h2.textContent = "";
 body.appendChild(h2);
 
+const reset = document.querySelector("#total-reset");
 const restart = document.querySelector("#restart-button");
 const buttonBoard = document.querySelector("#button-board");
 
@@ -335,7 +334,7 @@ function markUpBoard(square) {
 }
 
 
-// event listeners
+// EVENT LISTENERS
 aOne.addEventListener("click", () => {
   markUpBoard(aOne);
 });
@@ -372,7 +371,24 @@ cThree.addEventListener("click", () => {
   markUpBoard(cThree);
 });
 
-// restart button
+// game buttons
+reset.addEventListener("click", () => {
+  // launch landing page again;
+  start.classList.remove("landing-screen-closed");
+  start.classList.add("landing-screen-opened");
+  theGame.classList.remove("landing-screen-opened");
+  theGame.classList.add("landing-screen-closed");
+  // reset player information
+  playerOne.name = "";
+  playerTwo.name = "";
+  // reset DOM values
+  p1DOM.value = "";
+  p2DOM.value = "";
+  
+})
+
 restart.addEventListener("click", () => {
  fullRestart();
 }) 
+
+
