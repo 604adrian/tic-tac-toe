@@ -112,7 +112,7 @@ function displayBoard(position) {
         game.squares.forEach((sqr) => {
           sqr.classList.toggle("shaker");
         })
-      }, 2000)
+      }, 1000)
     }
   }
   

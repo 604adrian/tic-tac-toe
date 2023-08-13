@@ -118,6 +118,9 @@ reset.addEventListener("click", () => {
   // reset DOM values
   p1DOM.value = "";
   p2DOM.value = "";
+  // checkers
+  checker1.textContent = "";
+  checker2.textContent = "";
   // reset game
   game.won = false;
   fullRestart();
@@ -125,6 +128,6 @@ reset.addEventListener("click", () => {
 })
 
 restart.addEventListener("click", () => {
- fullRestart();
+  fullRestart();
 }) 
 

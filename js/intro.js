@@ -2,6 +2,9 @@
 // store DOM values for names
 const p1DOM = document.querySelector("#player1");
 const p2DOM = document.querySelector("#player2");
+// error messages
+const errorOne = document.querySelector("#message-1");
+const errorTwo = document.querySelector("#message-2");
 // the okay button
 const okayButton = document.querySelector("#okay-button");
 // the checkers
@@ -59,6 +62,7 @@ p1DOM.addEventListener("input", () => {
       checker1.textContent = "❌"; 
     }
     checker1.textContent = "✅";
+    errorOne.textContent = "";
     playerOne.name = p1DOM.value;
   } else {
     checker1.textContent = "❌";
@@ -72,6 +76,7 @@ p1DOM.addEventListener("input", () => {
 p2DOM.addEventListener("input", () => {
   if (playerOne.name !== p2DOM.value) {
     checker2.textContent = "✅";
+    errorTwo.textContent = "";
     playerTwo.name = p2DOM.value;
   } else {
     checker2.textContent = "❌";
@@ -92,8 +97,27 @@ if (p2a.checked === true) {
 }
 
 okayButton.addEventListener("click", () => {
-  start.classList.add("landing-screen-closed");
-  start.classList.remove("landing-screen-opened");
-  theGame.classList.remove("landing-screen-closed");
-  theGame.classList.add("landing-screen-opened");
+  if (playerOne.name !== "" && playerTwo.name !== "") {
+    start.classList.add("landing-screen-closed");
+    start.classList.remove("landing-screen-opened");
+    theGame.classList.remove("landing-screen-closed");
+    theGame.classList.add("landing-screen-opened");
+  } else {
+    if (playerOne.name === "") {
+      errorOne.textContent = "Player must have a name!"
+      checker1.textContent = "❌";
+      checker1.classList.toggle("shaker");
+        setTimeout(() => {
+          checker1.classList.toggle("shaker");
+        }, 100);
+    }
+    if (playerTwo.name === "") {
+      errorTwo.textContent = "Player must have a name!";
+      checker2.textContent = "❌";
+      checker2.classList.toggle("shaker");
+        setTimeout(() => {
+          checker2.classList.toggle("shaker");
+        }, 100);
+    }  
+  }
 });

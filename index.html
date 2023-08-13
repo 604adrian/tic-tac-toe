@@ -30,16 +30,24 @@
               <label
                 class="label"
                 for="player1">NAME FOR PLAYER 1: </label>
-              <div class="input-container">
-                <input
-                  class="inputter"
-                  type="text"
-                  id="player1"
-                  required
-                  minlength="1"
-                  maxlength="40"
-                 />
-                <p id="first-checker" class="checkers"></p>
+                
+              <div
+                id="input-message-container-one"
+                class="input-message-container"
+              >
+                <div class="input-container">
+                  <input
+                    class="inputter"
+                    type="text"
+                    id="player1"
+                    required
+                    minlength="1"
+                    maxlength="40"
+                   />
+                  <p id="first-checker" class="checkers"></p>
+                </div>
+                <div id="message-1" class="message">
+                </div>
               </div>
               
               <div class="player-type">
@@ -74,17 +82,25 @@
               <label
                 class="label"
                 for="player2">NAME FOR PLAYER 2:</label>
-              <div class="input-container">
-                <input
-                  class="inputter"
-                  type="text"
-                  id="player2"
-                  required
-                  minlength="1"
-                  maxlength="40"
-                  name="peson-or-robot-2"
-                 />
-                <p id="second-checker" class="checkers"></p>
+              
+              <div
+                id="input-message-container-two"
+                class="input-message-container"
+              >
+                <div class="input-container">
+                  <input
+                    class="inputter"
+                    type="text"
+                    id="player2"
+                    required
+                    minlength="1"
+                    maxlength="40"
+                    name="peson-or-robot-2"
+                   />
+                  <p id="second-checker" class="checkers"></p>
+                </div>
+                <div id="message-2" class="message">
+                </div>
               </div>
               
               <div class="player-type">
@@ -140,6 +156,7 @@
         <button id="restart-button" class='game-button'>RESET GAME</button>
       </div>
     </div>
+    <script src="js/ai.js"></script>
     <script src="js/intro.js"></script>
     <script src="js/index.js"></script>
     <script src="js/logic.js"></script>

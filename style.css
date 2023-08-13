@@ -373,3 +373,16 @@ hr {
   margin-top: 4vh;
   margin-bottom: 4vh;
 }
+
+.input-message-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
+.message {
+  display: block;
+  font-size: 1em;
+  color: #d40000;
+  padding: 2px;
+}
