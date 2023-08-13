@@ -317,6 +317,14 @@ body {
 #shebang2 {
 }
 
+.radio-select {
+  border-style: dotted;
+  border-color: transparent;
+  border-left-color: white;
+  padding: 0;
+  padding-left: 15px;
+}
+
 .for-radio {
   color: white;
   font-weight: 1;
@@ -328,11 +336,13 @@ body {
 }
 
 .radio-label {
-  font-size: 2em;
+  font-size: 1em;
 }
 
 #okay-button {
-  width: 300px;
+  width: 320px;
+  font-size: 1.5em;
+  padding: 10px;
 }
 
 #item-in-col {
@@ -357,4 +367,9 @@ body {
   visibility: hidden;
   height: 0;
   overflow: hidden;
+}
+
+hr {
+  margin-top: 4vh;
+  margin-bottom: 4vh;
 }

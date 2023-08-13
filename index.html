@@ -15,10 +15,10 @@
   </head>
   <body id="landing-page" class="landing-page-open">
 
+    <h1>TIC, TAC, OR TOE</h1>
     <!--- LANDING SCREEN --->
     <div id="landing-screen">
-      <h1>Can you tic-tac your toe?</h1>
-      <h2 class="actual-h2">Pick a name</h2>
+      <h2 class="actual-h2">CUSTOMISE YOUR PLAYER</h2>
 
       <div id="name-element">
 
@@ -29,7 +29,7 @@
             <hr />
               <label
                 class="label"
-                for="player1">Name for Player 1: </label>
+                for="player1">NAME FOR PLAYER 1: </label>
               <div class="input-container">
                 <input
                   class="inputter"
@@ -47,20 +47,22 @@
                 <div class="radio-select">
                   <input
                     type="radio"
+                    class='radio-p1'
                     id="radio-p1a"
-                    name="peson-or-robot-1"
+                    name="peson-or-robot-one"
                     checked
                    />
-                  <label class="radio-label" for="radio-p2a"> 🧑 A person</label>
+                  <label class="radio-label" for="radio-p2a"> 🧑 A PERSON</label>
                 </div>
                 <div class="radio-select">
                   <input
                     type="radio"
-                    id="radio-p2"
-                    name="peson-or-robot-1"
-                    checked
+                    class='radio-p1'
+                    id="radio-p2a"
+                    name="peson-or-robot-one"
+                    
                    />
-                  <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
+                  <label class="radio-label" for="radio-p2"> 🤖 AN A.I.</label>
                 </div>
             </div>
           </div>
@@ -71,7 +73,7 @@
             <div id="second-input">
               <label
                 class="label"
-                for="player2">Name for Player 2:</label>
+                for="player2">NAME FOR PLAYER 2:</label>
               <div class="input-container">
                 <input
                   class="inputter"
@@ -90,29 +92,30 @@
                 <div class="radio-select">
                   <input
                     type="radio"
-                    id="radio-p1a"
-                    name="peson-or-robot-2"
+                    class="radio-pb"
+                    id="radio-p1b"
+                    name="peson-or-robot-two"
                     checked
                    />
-                  <label class="radio-label" for="radio-p2a"> 🧑 A person</label>
+                  <label class="radio-label" for="radio-p1b"> 🧑 A PERSON</label>
                 </div>
                 <div class="radio-select">
                   <input
                     type="radio"
-                    id="radio-p2"
-                    name="peson-or-robot-2"
-                    checked
+                    class='radio-pb'
+                    id="radio-p2b"
+                    name="peson-or-robot-two"
+                    
                    />
-                  <label class="radio-label" for="radio-p2"> 🤖 An A.I.</label>
+                  <label class="radio-label" for="radio-p2b"> 🤖 AN A.I.</label>
                 </div>
               </div>
-  0
             </div>
           </div>
 
           <div class="item-in-col">
             <hr>
-            <button id="okay-button">Okay</button>
+            <button id="okay-button">START GAME</button>
           </div>
         </div>
       </div>
@@ -121,7 +124,6 @@
 
     <!--- ACTUAL GAME --->
     <div id="the-game">
-      <h1>Can you tic-tac your toe?</h1>
       <div id=ticTacToeBoard>
         <div class="row left top" id="zero"></div>
         <div class="row middle top" id="one"></div>
@@ -134,11 +136,14 @@
         <div class="row right bottom" id="eight"></div>
       </div>
       <div id="button-board">
-        <button id='total-reset' class='game-button'>Total reset</button>
-        <button id="restart-button" class='game-button'>Restart game</button>
+        <button id='total-reset' class='game-button'>TOTAL RESET</button>
+        <button id="restart-button" class='game-button'>RESET GAME</button>
       </div>
     </div>
     <script src="js/intro.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/logic.js"></script>
+    <script src="js/indexP2.js"></script>
+    <script src='js/ai.js'></script>
   </body>
 </html>

@@ -10,6 +10,15 @@ const checker2 = document.querySelector("#second-checker");
 // the game
 const theGame = document.querySelector("#the-game");
 const start = document.querySelector("#landing-screen");
+// person or robot
+const pTypeOne = document.querySelector(".person-or-robot-one");
+const pTypeTwo = document.querySelector(".person-or-robot-two");
+// first check
+const p1a = document.querySelector("#radio-p1a");
+const p2a = document.querySelector("#radio-p2a");
+// second check
+const p1b = document.querySelector("#radio-p1b");
+const p2b = document.querySelector("#radio-p2b");
 
 // write value
 function p1() {
@@ -26,6 +35,7 @@ class Player {
     this.name = name;
     this.marker = marker;
     this.counter = 0;
+    this.ai = false;
   }
 }
 
@@ -76,10 +86,15 @@ p2DOM.addEventListener("input", () => {
   }, 100);
 })
 
-// the okaybutton
-okayButton.addEventListener("click", () => {
-  console.log("test");
-  start.classList.add("landing-screen-closed");
-  theGame.classList.remove("landing-screen-closed");
-});
+
+
+// CHECK FOR AI 
+if (p1a.checked === true) {
+  playerOne.ai = true;
+}
+
+if (p2a.checked === true) {
+  playerTwo.ai = true;
+}
+
 
