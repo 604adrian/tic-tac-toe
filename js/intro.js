@@ -42,8 +42,8 @@ function createPlayer(name, marker) {
 let p2Name = p2();
 let p1Name = p1();
 
-let playerOne = createPlayer(p2Name, "O");
-let playerTwo = createPlayer(p1Name, "X");
+let playerOne = createPlayer(p1Name, "X");
+let playerTwo = createPlayer(p2Name, "O");
 
 const test = 123;
 
