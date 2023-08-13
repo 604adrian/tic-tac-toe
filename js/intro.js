@@ -34,7 +34,7 @@ function createPlayer(name, marker) {
   return {
     name: name,
     marker: marker,
-    counter: 1,
+    counter: 0,
     ai: false
   };
 }
