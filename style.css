@@ -119,8 +119,6 @@ body {
   animation-duration: 1s;
   animation-iteration-count: 1;
   font-size: 80px;
-  width: auto;
-  margin: auto;
   margin-top: -230px;
 }
 
@@ -345,6 +343,7 @@ body {
   width: 320px;
   font-size: 1.5em;
   padding: 10px;
+  margin-bottom: 25px;
 }
 
 #item-in-col {
@@ -362,7 +361,6 @@ body {
 }
 
 .landing-screen-opened {
-  height: 100vh;
 }
 
 .landing-screen-closed {

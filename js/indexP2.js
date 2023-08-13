@@ -36,9 +36,9 @@ function markUpBoard(square) {
       }
 
       if (game.turn % 2 !== 0) {
-        square.textContent = "O";
-      } else {
         square.textContent = "X";
+      } else {
+        square.textContent = "O";
       }
 
     } else {
@@ -111,8 +111,6 @@ cThree.addEventListener("click", () => {
 reset.addEventListener("click", () => {
   // launch landing page again;
   start.classList.remove("landing-screen-closed");
-  start.classList.add("landing-screen-opened");
-  theGame.classList.remove("landing-screen-opened");
   theGame.classList.add("landing-screen-closed");
   // reset player information
   playerOne.name = "";
