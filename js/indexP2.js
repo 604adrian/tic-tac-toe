@@ -35,7 +35,7 @@ function markUpBoard(square) {
           break;
       }
 
-      if (game.turn % 2 === 0) {
+      if (game.turn % 2 !== 0) {
         square.textContent = "O";
       } else {
         square.textContent = "X";
@@ -121,6 +121,7 @@ reset.addEventListener("click", () => {
   p1DOM.value = "";
   p2DOM.value = "";
   // reset game
+  game.won = false;
   fullRestart();
   
 })
@@ -129,9 +130,3 @@ restart.addEventListener("click", () => {
  fullRestart();
 }) 
 
-// the okaybutton
-okayButton.addEventListener("click", () => {
-  console.log("test");
-  start.classList.add("landing-screen-closed");
-  theGame.classList.remove("landing-screen-closed");
-});

@@ -119,6 +119,8 @@ body {
   animation-duration: 1s;
   animation-iteration-count: 1;
   font-size: 80px;
+  width: auto;
+  margin: auto;
   margin-top: -230px;
 }
 

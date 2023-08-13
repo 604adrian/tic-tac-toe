@@ -26,7 +26,7 @@ const game = {
   xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   winnState: 0,  // stores id for animations
-  turn: 2,
+  turn: 1,
   squares: [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree],
   won: false
 }

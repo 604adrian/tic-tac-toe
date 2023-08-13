@@ -1,16 +1,34 @@
-
+function checkPlayer() {
+  /* checks the current player
+   * by refering to counters
+   * if even, its playerOne
+   * if odd, its playerTwo
+   * return: the current player
+   */
+  if (game.turn % 2 === 0) {
+    return playerOne;
+  } else {
+    return playerTwo;
+  }
+}
+function checkForAi() {
+  /* checks the current player and
+   * checks if that player is an ai;
+   * return: boolean
+   */
+  let player = checkPlayer();
+  if (player.ai === false) {
+    return
+  }
+  return;
+}
 
 // logic for game
 function displayBoard(position) {
-  let player = {};
+  let player = checkPlayer();
+  console.log(player);
 
-  // determine whos turn it is 
-  if (game.turn % 2 === 0) {
-    player = playerOne;
-  } else {
-    player = playerTwo;
-  }
-  
+
   let status = false;
 
   // prime factorization for identification
@@ -29,13 +47,10 @@ function displayBoard(position) {
       
       // update x player's trackers
     checker[position] = player.marker;
-    console.log(player, player.counter);
 
     let idNum = checker.filter(prime => prime !== player.marker);
-    console.log("checker: ", idNum);
     let theId = idNum.reduce(function(product, value) { return product * value; });
     let difference = game.boardBackup.filter(x => !idNum.includes(x)); // finds the difference
-    console.log("difference: ", difference);
 
     if (player.counter === 5) {
       difference.forEach((x) => {
@@ -106,5 +121,7 @@ function displayBoard(position) {
   let winner = game.won;
   
   return {winner}
+
+  //checkForAi();
 }
 

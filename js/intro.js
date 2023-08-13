@@ -30,24 +30,20 @@ function p2() {
 }
 
 // players
-class Player {
-  constructor(name, marker) {
-    this.name = name;
-    this.marker = marker;
-    this.counter = 0;
-    this.ai = false;
-  }
+function createPlayer(name, marker) {
+  return {
+    name: name,
+    marker: marker,
+    counter: 1,
+    ai: false
+  };
 }
-
 
 let p2Name = p2();
 let p1Name = p1();
-const players = [];
 
-let playerOne = new Player(p2Name, "O");
-let playerTwo = new Player(p1Name, "X");
-players.push(playerOne);
-players.push(playerTwo);
+let playerOne = createPlayer(p2Name, "O");
+let playerTwo = createPlayer(p1Name, "X");
 
 const test = 123;
 
@@ -86,8 +82,6 @@ p2DOM.addEventListener("input", () => {
   }, 100);
 })
 
-
-
 // CHECK FOR AI 
 if (p1a.checked === true) {
   playerOne.ai = true;
@@ -97,4 +91,9 @@ if (p2a.checked === true) {
   playerTwo.ai = true;
 }
 
-
+okayButton.addEventListener("click", () => {
+  start.classList.add("landing-screen-closed");
+  start.classList.remove("landing-screen-opened");
+  theGame.classList.remove("landing-screen-closed");
+  theGame.classList.add("landing-screen-opened");
+});
