@@ -1,6 +1,5 @@
 // mark-up the gameboard
 function markUpBoard(square) {
-
   if (game.won === false) {
     // mark spot
     let text = square.textContent;
@@ -52,8 +51,6 @@ function markUpBoard(square) {
         removeToggles();
       }, 500)
     }
-
-   
 
   } else {
     game.squares.forEach((sqr) => {

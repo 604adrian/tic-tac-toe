@@ -25,10 +25,11 @@ const game = {
   boardBackup: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   xChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
   oChecker: [2, 3, 5, 7, 11, 13, 17, 19, 23],
-  winnState: 0,  // stores id for animations
+  winState: [],
   turn: 2,
   squares: [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree],
-  won: false
+  won: false,
+  wins: [7436429, 222870, 30030, 440895, 238602, 937365, 355810, 149226] 
 }
 
 

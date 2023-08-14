@@ -1,4 +1,4 @@
-function checkPlayer() {
+const checkPlayer = () => {
   /* checks the current player
    * by refering to counters
    * if even, its playerOne
