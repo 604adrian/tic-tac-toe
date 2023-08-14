@@ -11,17 +11,7 @@ function checkPlayer() {
     return playerTwo;
   }
 }
-function checkForAi() {
-  /* checks the current player and
-   * checks if that player is an ai;
-   * return: boolean
-   */
-  let player = checkPlayer();
-  if (player.ai === false) {
-    return
-  }
-  return;
-}
+
 
 // logic for game
 function displayBoard(position) {
@@ -122,6 +112,5 @@ function displayBoard(position) {
   
   return {winner}
 
-  //checkForAi();
 }
 

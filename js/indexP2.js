@@ -109,18 +109,30 @@ cThree.addEventListener("click", () => {
 
 // game buttons
 reset.addEventListener("click", () => {
+
   // launch landing page again;
   start.classList.remove("landing-screen-closed");
   theGame.classList.add("landing-screen-closed");
+
   // reset player information
   playerOne.name = "";
   playerTwo.name = "";
+
   // reset DOM values
   p1DOM.value = "";
   p2DOM.value = "";
+
   // checkers
   checker1.textContent = "";
   checker2.textContent = "";
+
+  // reset ai
+  p1a.checked = true;
+  playerOne.ai = false;
+
+  p1b.checked = true;
+  playerTwo.ai = false;
+
   // reset game
   game.won = false;
   fullRestart();

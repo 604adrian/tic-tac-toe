@@ -88,13 +88,21 @@ p2DOM.addEventListener("input", () => {
 })
 
 // CHECK FOR AI 
-if (p1a.checked === true) {
-  playerOne.ai = true;
-}
+p1a.addEventListener("click", () => {
+  playerOne.ai = false;
+});
 
-if (p2a.checked === true) {
+p2a.addEventListener("click", () => {
+  playerOne.ai = true;
+});
+
+p1b.addEventListener("click", () => {
+  playerTwo.ai = false;
+});
+
+p2b.addEventListener("click", () => {
   playerTwo.ai = true;
-}
+})
 
 okayButton.addEventListener("click", () => {
   if (playerOne.name !== "" && playerTwo.name !== "") {
