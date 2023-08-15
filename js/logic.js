@@ -18,7 +18,6 @@ function displayBoard(position) {
   let player = checkPlayer();
   console.log(player);
 
-
   let status = false;
 
   // prime factorization for identification
@@ -40,7 +39,7 @@ function displayBoard(position) {
 
     let idNum = checker.filter(prime => prime !== player.marker);
     let theId = idNum.reduce(function(product, value) { return product * value; });
-    let difference = game.boardBackup.filter(x => !idNum.includes(x)); // finds the difference
+    let difference = game.boardBackup.filter(x => !idNum.includes(x)); // finds the difference  
 
     if (player.counter === 5) {
       difference.forEach((x) => {
@@ -110,7 +109,7 @@ function displayBoard(position) {
   console.log(game.board);
   let winner = game.won;
   
-  return {winner}
+  return { winningValues }
 
 }
 
