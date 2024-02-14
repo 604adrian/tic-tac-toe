@@ -329,6 +329,7 @@ body {
   color: white;
   font-weight: 1;
   font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 .radio-opt {
@@ -336,7 +337,18 @@ body {
 }
 
 .radio-label {
-  font-size: 1em;
+  font-family: sans-serif;
+  font-size: 0.85em;
+}
+
+.disclaimer {
+  margin-bottom: 15px;
+  width: 316px;
+}
+
+.disclaimer i {
+  font-size: 0.75em;
+  font-family: monospace;
 }
 
 #okay-button {
